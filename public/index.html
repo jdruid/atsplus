@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
+    <header style="background-color: #0078D4;">
+        <div class="container">
+            <!-- Replace 'your-logo.png' with the actual logo image source -->
+            <img src="img/atsplus-logo.jpg" alt="ATS Plus Logo" style="height: 50px; width: 50px;">
+            <span class="ml-2 text-white">ATS Plus</span>
+        </div>
+    </header>
+
+    <div class="container-sm my-5">
+        <div class="row">
+            <div class="col text-end">
+              <img src="img/itguy.jpg" alt="ATS Plus" class="img-fluid">
+            </div>
+
+            <div class="col" id="promptbuilder">
+              
+                <div id="prompt-one-container">
+                    <form id="prompt_one_form">
+                        <h3>Wecome to ATS Plus</h3>
+                        <div class="row">
+                            <div class="mb-3">
+                                <label for="form_tpid" class="form-label">Enter your customer ID</label>
+                                <input type="text" class="form-control" id="form_tpid" placeholder="123456">
+                            </div>
+                            <div class="col-sm-9">
+                                <button type="button" class="btn btn-primary" id="form_btn_prompt_one" onclick="processPromptOne()">Look Up</button>
+                            </div>
+                        </div>
+                    </form>
+                 </div>
+
+                 <div id="prompt-two-container" style="display: none;">
+                    <form id="prompt_two_form">
+                        <h3>Results</h3>
+                        <p>We found your customer. Listed below are the products associated with their EA.</p>
+                        <div class="row">
+                            <p>Please click a product below that you need help with.</p>
+
+                            <ul id="products" class="list-group">
+                                <li class="list-group-item"><a href="javascript:void(0);" onclick="processPromptTwo('Microsoft M365 E5')">Microsoft M365 E5</a></li>
+                                <li class="list-group-item"><a href="javascript:void(0);" onclick="processPromptTwo('Windows Server 2022')">Windows Server 2022</a></li>
+                                <li class="list-group-item"><a href="javascript:void(0);" onclick="processPromptTwo('Windows Server 2019')">Windows Server 2019</a></li>
+                                <li class="list-group-item"><a href="javascript:void(0);" onclick="processPromptTwo('Windows Server 2016')">Windows Server 2016</a></li>
+                                <li class="list-group-item"><a href="javascript:void(0);" onclick="processPromptTwo('Exchange Server 2019')">Exchange Server 2019</a></li>
+                                <li class="list-group-item"><a href="javascript:void(0);" onclick="processPromptTwo('Exchange Server 2016')">Exchange Server 2016</a></li>
+                                <li class="list-group-item"><a href="javascript:void(0);" onclick="processPromptTwo('SQL Server 2019')">SQL Server 2019</a></li>
+                                <li class="list-group-item"><a href="javascript:void(0);" onclick="processPromptTwo('SQL Server 2016')">SQL Server 2016</a></li>
+                                <li class="list-group-item"><a href="javascript:void(0);" onclick="processPromptTwo('BizTalk Server 2019')">BizTalk Server 2019</a></li>
+                                <li class="list-group-item"><a href="javascript:void(0);" onclick="processPromptTwo('Microsoft Project')">Microsoft Project</a></li>
+                                <li class="list-group-item"><a href="javascript:void(0);" onclick="processPromptTwo('SharePoint Server 2019')">SharePoint Server 2019</a></li>
+                            </ul>
+                        </div>
+                    </form>
+                 </div>
+
+                 <div id="prompt-three-container" style="display: none;">
+                    <form id="prompt_three_form">
+                        <h3>Product Help</h3>
+                        <p>You selected: </p><p id="product_result">XXX</p>
+                        <div class="row">
+                            <p>What type of help are you looking for?</p>
+
+                            <form id="assistance-form">
+                                <ul>
+                                    <li class="list-group-item">
+                                        <label>
+                                            <input type="checkbox" name="assistance" value="Documentation"> Documentation
+                                        </label>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <label>
+                                            <input type="checkbox" name="assistance" value="Troubleshooting"> Troubleshooting
+                                        </label>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <label>
+                                            <input type="checkbox" name="assistance" value="Terms and Conditions"> Terms and Conditions
+                                        </label>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <label>
+                                            <input type="checkbox" name="assistance" value="Support"> Support
+                                        </label>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <label>
+                                            <input type="checkbox" name="assistance" value="Error Message"> Error message
+                                        </label>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <label>
+                                            <input type="checkbox" name="assistance" value="Training"> Training
+                                        </label>
+                                    </li>
+                                </ul>
+
+                                <div class="col-sm-9">
+                                    <button type="button" class="btn btn-primary" id="form_btn_prompt_three" onclick="processPromptThree()">Next</button>
+                                </div>
+                                
+                            </form>
+                        </div>
+                    </form>
+                 </div>
+
+                 <div id="prompt-four-container" style="display: none;">
+                    <form id="prompt_four_form">
+                        <h3>Product Help</h3>
+                        <p>You selected: </p><p id="selected_product">XXX</p>
+                        <p>You are looking for help with: </p><p id="the_prompt">XXX</p>
+                        <div class="row">
+                            <p>Anything else to add?</p>
+
+                            <form id="assistance-form">
+                                <div class="mb-3">
+                                    <label for="form_prompt_version" class="form-label">Specific Version</label>
+                                    <input type="text" class="form-control" id="form_prompt_version">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="form_prompt_error" class="form-label">Error Message or ID</label>
+                                    <input type="text" class="form-control" id="form_prompt_error">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="form_prompt_issue" class="form-label">General Issue</label>
+                                    <input type="text" class="form-control" id="form_prompt_issue">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="form_prompt_specific" class="form-label">Specific Case</label>
+                                    <input type="text" class="form-control" id="form_prompt_specific">
+                                </div>
+                                <div class="col-sm-9">
+                                    <button type="button" class="btn btn-primary" id="form_btn_prompt_four"onclick="processPromptFour()">Get Help</button>
+                                </div>                                
+                            </form>
+                        </div>
+                    </form>
+                 </div>
+
+                <div class="row container" id="prompt-five-container" style="display: none;">
+                    
+                    <!-- Just a bare minimal chat to do not bring any framework -->
+                    <div class="card card-bordered">
+                        <div class="">
+                            <div class="">
+                                <div class="">
+                                    <div id="scroller" style="overflow-y: scroll !important; height:600px !important;" class="ps-container ps-theme-default ps-active-y">
+                                        <div class="">
+                                            <div id="messages" class="">
+                                                <div class="">
+                                                
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <div class="">                                    
+                                        <div class="">
+                                            <label for="message" class="form-label">Prompt</label>
+                                            <textarea id="message" class="form-control" rows="3"></textarea>
+                                        </div>
+                                        </div>
+                                        <div class="">
+                                            <button id="send" type="button" class="btn btn-primary">Send It!</button>                                    
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="templates" style="visibility: hidden;">
+                        <div id="system-message">
+                            <div class="media media-chat">
+                                <div class="media-body">
+                                    <div class="">
+                                        ATS Plus
+                                    </div>
+                                    <div class="media-body">
+                                        <p>##Text#</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="user-message">
+                            <div class="media media-chat media-chat-reverse">
+                                <div class="media-body">
+                                    <div class="media-body">
+                                        <p>##Text#</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="processing">
+                            <div class="media text-center">                                
+                                <div class="d-flex justify-content-center">
+                                    <div class="spinner-border" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>                         
+                     </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="js/index.js"></script>
+  </body>
+</html>
